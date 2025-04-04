@@ -1,0 +1,278 @@
+mysql> alter table employee
+    -> add job varchar(12);
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update employee
+    -> set job="head clerk"
+    -> where ename="Ramesh";
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee
+    -> set job="Analyst"
+    -> where ename in("Sarita","Jitesh");
+Query OK, 2 rows affected (0.04 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from employee;
++------+--------+-------+-----------+------------+
+| eno  | ename  | basic | incentive | job        |
++------+--------+-------+-----------+------------+
+|    1 | Rajesh | 20000 |      1500 | NULL       |
+|    2 | Sarita | 25000 |      1000 | Analyst    |
+|    3 | Meera  | 15750 |      3000 | NULL       |
+|    4 | Jitesh | 30000 |       500 | Analyst    |
+|    5 | Ramesh | 12600 |      3000 | head clerk |
++------+--------+-------+-----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update employee
+    -> set job="Manager"
+    -> where job is null;
+Query OK, 2 rows affected (0.03 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from employee;
++------+--------+-------+-----------+------------+
+| eno  | ename  | basic | incentive | job        |
++------+--------+-------+-----------+------------+
+|    1 | Rajesh | 20000 |      1500 | Manager    |
+|    2 | Sarita | 25000 |      1000 | Analyst    |
+|    3 | Meera  | 15750 |      3000 | Manager    |
+|    4 | Jitesh | 30000 |       500 | Analyst    |
+|    5 | Ramesh | 12600 |      3000 | head clerk |
++------+--------+-------+-----------+------------+
+5 rows in set (0.00 sec)
+mysql> insert into cust_vehicle values
+    -> (1,1,1,10,75000);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into cust_vehicle values
+    -> (2,1,2,10,790000),
+    -> (3,2,3,11,80000),
+    -> (4,3,3,11,75000),
+    -> (5,3,2,10,800000);
+Query OK, 4 rows affected (0.04 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from cust_vehicle;
++-----+--------+-----+-----+-----------+
+| tid | Custid | vid | sid | Buy_price |
++-----+--------+-----+-----+-----------+
+|   1 |      1 |   1 |  10 |     75000 |
+|   2 |      1 |   2 |  10 |    790000 |
+|   3 |      2 |   3 |  11 |     80000 |
+|   4 |      3 |   3 |  11 |     75000 |
+|   5 |      3 |   2 |  10 |    800000 |
++-----+--------+-----+-----+-----------+
+5 rows in set (0.00 sec)
+
+mysql> alter table cust_vehicle
+    -> add rating int;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update cust_vehicle
+    -> set rating=5
+    -> where buy_price>90000;
+Query OK, 2 rows affected (0.04 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from cust_vehicle;
++-----+--------+-----+-----+-----------+--------+
+| tid | Custid | vid | sid | Buy_price | rating |
++-----+--------+-----+-----+-----------+--------+
+|   1 |      1 |   1 |  10 |     75000 |   NULL |
+|   2 |      1 |   2 |  10 |    790000 |      5 |
+|   3 |      2 |   3 |  11 |     80000 |   NULL |
+|   4 |      3 |   3 |  11 |     75000 |   NULL |
+|   5 |      3 |   2 |  10 |    800000 |      5 |
++-----+--------+-----+-----+-----------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select e.ename,e.deptno,d.dname,e.sal,e.comm
+    -> from emp e,dept d
+    -> where (e.deptno=d.deptno) and e.deptno in(20,30) and e.comm is null;
++-------+--------+----------+---------+------+
+| ename | deptno | dname    | sal     | comm |
++-------+--------+----------+---------+------+
+| FORD  |     20 | RESEARCH | 3000.00 | NULL |
+| ADAMS |     20 | RESEARCH | 1100.00 | NULL |
+| SCOTT |     20 | RESEARCH | 3000.00 | NULL |
+| JONES |     20 | RESEARCH | 2975.00 | NULL |
+| JAMES |     30 | SALES    |  950.00 | NULL |
+| BLAKE |     30 | SALES    | 2850.00 | NULL |
++-------+--------+----------+---------+------+
+
+mysql> select e.ename,e.sal,s.grade
+    -> from emp e,salgrade s
+    -> where e.sal between s.losal and s.hisal;
++--------+---------+-------+
+| ename  | sal     | grade |
++--------+---------+-------+
+| ALLEN  | 1600.00 |     3 |
+| WARD   | 1250.00 |     2 |
+| JONES  | 2975.00 |     4 |
+| MARTIN | 1250.00 |     2 |
+| BLAKE  | 2850.00 |     4 |
+| CLARK  | 2450.00 |     4 |
+| SCOTT  | 3000.00 |     4 |
+| KING   | 5000.00 |     5 |
+| TURNER | 1500.00 |     3 |
+| ADAMS  | 1100.00 |     1 |
+| JAMES  |  950.00 |     1 |
+| FORD   | 3000.00 |     4 |
+| MILLER | 1300.00 |     2 |
++--------+---------+-------+
+13 rows in set (0.03 sec)
+mysql> select d.deptno,d.dname,d.loc
+    -> from dept d,emp e
+    -> where e.deptno=d.deptno and e.job='clerk'  ;
++--------+------------+----------+
+| deptno | dname      | loc      |
++--------+------------+----------+
+|     10 | ACCOUNTING | NEW YORK |
+|     20 | RESEARCH   | DALLAS   |
+|     30 | SALES      | CHICAGO  |
++--------+------------+----------+
+3 rows in set (0.00 sec)
+mysql> create table t1
+    -> (id int,city varchar(30));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> create table t2
+    -> (id int,city varchar(20));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into t1 values
+    -> (1,'Pune'),
+    -> (2,'Mumbai'),
+    -> (3,'hydrabad'),
+    -> (4,'Chennai');
+Query OK, 4 rows affected (0.05 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> insert into t2 values
+    -> (1,'Surat'),
+    -> (2,'Mumbai'),
+    -> (3,'hydrabad'),
+    -> (5,'Chennai');
+Query OK, 4 rows affected (0.04 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from t1
+    -> union
+    -> select * from t2;
++------+----------+
+| id   | city     |
++------+----------+
+|    1 | Pune     |
+|    2 | Mumbai   |
+|    3 | hydrabad |
+|    4 | Chennai  |
+|    1 | Surat    |
+|    5 | Chennai  |
++------+----------+
+6 rows in set (0.04 sec)
+
+mysql> select * from t1
+    -> union all
+    -> select * from t2;
++------+----------+
+| id   | city     |
++------+----------+
+|    1 | Pune     |
+|    2 | Mumbai   |
+|    3 | hydrabad |
+|    4 | Chennai  |
+|    1 | Surat    |
+|    2 | Mumbai   |
+|    3 | hydrabad |
+|    5 | Chennai  |
++------+----------+
+8 rows in set (0.00 sec)
+
+mysql> select * from t1
+    -> intersect
+    -> select * from t2;
++------+----------+
+| id   | city     |
++------+----------+
+|    2 | Mumbai   |
+|    3 | hydrabad |
++------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from t1
+    -> except
+    -> select * from t2;
++------+---------+
+| id   | city    |
++------+---------+
+|    1 | Pune    |
+|    4 | Chennai |
++------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from t2
+    -> except
+    -> select * from t1;
++------+---------+
+| id   | city    |
++------+---------+
+|    1 | Surat   |
+|    5 | Chennai |
++------+---------+
+
+ create table course
+    -> (cid int,cname varchar(20) unique not null,fees int default 5000,constraint x primary key(cid));
+Query OK, 0 rows affected (0.10 sec)
+2 rows in set (0.00 sec)
+
+create table trainer
+(tid varchar(4),
+tname varchar(20) not null,
+cid varchar(20),
+  salary int  default 20000,
+experience int check (experience>10),
+    constraint x primary key(tid),constraint y foreign key(cid)
+    references course(cid));
+
+mysql> insert into trainer values
+    -> ('t2','Rajan','c1',25000,15),
+    -> ('t3','Shruti','c2',22000,12),
+    -> ('t4','Arti','c2',30000,20),
+    -> ('t5','Sameer','c3',28000,17),
+    -> ('t6','Sanjay',null,default,11),
+    -> ('t7','Soha',null,26000,18);
+Query OK, 6 rows affected (0.04 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from trainer;
++-----+--------+------+--------+------------+
+| tid | tname  | cid  | salary | experience |
++-----+--------+------+--------+------------+
+| t1  | Amit   | c2   |  20000 |         11 |
+| t2  | Rajan  | c1   |  25000 |         15 |
+| t3  | Shruti | c2   |  22000 |         12 |
+| t4  | Arti   | c2   |  30000 |         20 |
+| t5  | Sameer | c3   |  28000 |         17 |
+| t6  | Sanjay | NULL |  20000 |         11 |
+| t7  | Soha   | NULL |  26000 |         18 |
++-----+--------+------+--------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from course;
++-----+----------------+-------+
+| cid | cname          | fees  |
++-----+----------------+-------+
+| c1  | Coe Java       |  7000 |
+| c2  | Linux          |  8000 |
+| c3  | Data Structure | 10000 |
+| c4  | Python         | 12000 |
+| c5  | Dot net        |  NULL |
++-----+----------------+-------+
+5 rows in set (0.00 sec)
+
+mysql>
