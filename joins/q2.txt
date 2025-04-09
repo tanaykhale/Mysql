@@ -1,0 +1,10 @@
+mysql> select p.pid,p.pname
+    -> from product p
+    -> where p.sid=(select sid from salesman where sname='kirti');
++-----+--------+
+| pid | pname  |
++-----+--------+
+| 123 | lays   |
+| 134 | nachos |
++-----+--------+
+2 rows in set (0.01 sec)

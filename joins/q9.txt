@@ -1,0 +1,13 @@
+mysql> select p.pid,p.pname,c.cid,c.cname
+    -> from product p
+    -> join category c
+    -> on p.cid=c.cid
+    -> where c.cname='chips';
++-----+----------+-----+-------+
+| pid | pname    | cid | cname |
++-----+----------+-----+-------+
+| 123 | lays     |   1 | chips |
+| 125 | pringles |   1 | chips |
+| 134 | nachos   |   1 | chips |
++-----+----------+-----+-------+
+3 rows in set (0.00 sec)

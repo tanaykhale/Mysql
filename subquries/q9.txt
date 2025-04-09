@@ -1,0 +1,78 @@
+mysql> create table faculty
+    -> (fid int primary key,
+    -> fname varchar(20) not null,
+    -> sp_skill1 varchar(30),
+    -> sp_skill2 varchar(30));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> insert into faculty values
+    -> (10,'Amol','database','java'),
+    -> (11,'Asha','java','mysql'),
+    -> (12,'Kiran','cpp','database'),
+    -> (13,'Seeta','mysql','database');
+Query OK, 4 rows affected (0.05 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> create table room
+    -> (rid int primary key,
+    -> rname varchar(15) not null,
+    -> rloc varchar(20));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> insert into room values
+    -> (100,'Jasmin','1st floor'),
+    -> (101,'Rose','2st floor'),
+    -> (105,'Lotus','1st floor'),
+    -> (103,'Mogra','1st floor');
+Query OK, 4 rows affected (0.05 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> create table courses
+    -> (cid int primary key,
+    -> cname varchar(15) not null,
+    -> rid int ,
+    -> fid int,
+    -> foreign key(rid) references room(rid) on delete set null,
+    -> foreign key(fid) references faculty(fid) on delete set null);
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> insert into courses values
+    -> (121,'dbda',100,10),
+    -> (131,'dac',101,null),
+    -> (141,'dtiss',null,null),
+    -> (151,'doit',105,12);
+Query OK, 4 rows affected (0.03 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from room
+    -> where rid not in(select rid from courses where rid is not null);
++-----+-------+-----------+
+| rid | rname | rloc      |
++-----+-------+-----------+
+| 103 | Mogra | 1st floor |
++-----+-------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select * from room
+    -> where rid  in(select rid from courses where rid is not null);
++-----+--------+-----------+
+| rid | rname  | rloc      |
++-----+--------+-----------+
+| 100 | Jasmin | 1st floor |
+| 101 | Rose   | 2st floor |
+| 105 | Lotus  | 1st floor |
++-----+--------+-----------+
+3 rows in set (0.04 sec)
+
+
+mysql> select c.cid,c.cname,c.rid,c.fid,f.fname
+    ->      from courses c,faculty f
+    ->      where c.fid=f.fid and f.fname in(select fname from faculty
+    ->      where sp_skill1='database' or sp_skill2='database');
++-----+-------+------+------+-------+
+| cid | cname | rid  | fid  | fname |
++-----+-------+------+------+-------+
+| 121 | dbda  |  100 |   10 | Amol  |
+| 151 | doit  |  105 |   12 | Kiran |
++-----+-------+------+------+-------+
+2 rows in set (0.00 sec)

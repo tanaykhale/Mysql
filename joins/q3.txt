@@ -1,0 +1,69 @@
+mysql> select e.empno,e.ename,e.deptno,d.dname,d.loc
+    ->      from emp e
+    ->       join dept d
+    ->      on e.deptno=d.deptno;
++-------+--------+--------+------------+----------+
+| empno | ename  | deptno | dname      | loc      |
++-------+--------+--------+------------+----------+
+|  7499 | ALLEN  |     30 | SALES      | CHICAGO  |
+|  7521 | WARD   |     30 | SALES      | CHICAGO  |
+|  7566 | JONES  |     20 | RESEARCH   | DALLAS   |
+|  7654 | MARTIN |     30 | SALES      | CHICAGO  |
+|  7698 | BLAKE  |     30 | SALES      | CHICAGO  |
+|  7782 | CLARK  |     10 | ACCOUNTING | NEW YORK |
+|  7788 | SCOTT  |     20 | RESEARCH   | DALLAS   |
+|  7839 | KING   |     10 | ACCOUNTING | NEW YORK |
+|  7844 | TURNER |     30 | SALES      | CHICAGO  |
+|  7876 | ADAMS  |     20 | RESEARCH   | DALLAS   |
+|  7900 | JAMES  |     30 | SALES      | CHICAGO  |
+|  7902 | FORD   |     20 | RESEARCH   | DALLAS   |
+|  7934 | MILLER |     10 | ACCOUNTING | NEW YORK |
++-------+--------+--------+------------+----------+
+13 rows in set (0.09 sec)
+
+mysql> select e.empno,e.ename,e.deptno,d.dname,d.loc
+    ->      from emp e
+    ->      left join dept d
+    ->      on e.deptno=d.deptno;
++-------+--------+--------+------------+----------+
+| empno | ename  | deptno | dname      | loc      |
++-------+--------+--------+------------+----------+
+|  7499 | ALLEN  |     30 | SALES      | CHICAGO  |
+|  7521 | WARD   |     30 | SALES      | CHICAGO  |
+|  7566 | JONES  |     20 | RESEARCH   | DALLAS   |
+|  7654 | MARTIN |     30 | SALES      | CHICAGO  |
+|  7698 | BLAKE  |     30 | SALES      | CHICAGO  |
+|  7782 | CLARK  |     10 | ACCOUNTING | NEW YORK |
+|  7788 | SCOTT  |     20 | RESEARCH   | DALLAS   |
+|  7839 | KING   |     10 | ACCOUNTING | NEW YORK |
+|  7844 | TURNER |     30 | SALES      | CHICAGO  |
+|  7876 | ADAMS  |     20 | RESEARCH   | DALLAS   |
+|  7900 | JAMES  |     30 | SALES      | CHICAGO  |
+|  7902 | FORD   |     20 | RESEARCH   | DALLAS   |
+|  7934 | MILLER |     10 | ACCOUNTING | NEW YORK |
++-------+--------+--------+------------+----------+
+13 rows in set (0.00 sec)
+
+mysql> select e.empno,e.ename,e.deptno,d.dname,d.loc
+    ->      from emp e
+    ->      right join dept d
+    ->      on e.deptno=d.deptno;
++-------+--------+--------+------------+----------+
+| empno | ename  | deptno | dname      | loc      |
++-------+--------+--------+------------+----------+
+|  7934 | MILLER |     10 | ACCOUNTING | NEW YORK |
+|  7839 | KING   |     10 | ACCOUNTING | NEW YORK |
+|  7782 | CLARK  |     10 | ACCOUNTING | NEW YORK |
+|  7902 | FORD   |     20 | RESEARCH   | DALLAS   |
+|  7876 | ADAMS  |     20 | RESEARCH   | DALLAS   |
+|  7788 | SCOTT  |     20 | RESEARCH   | DALLAS   |
+|  7566 | JONES  |     20 | RESEARCH   | DALLAS   |
+|  7900 | JAMES  |     30 | SALES      | CHICAGO  |
+|  7844 | TURNER |     30 | SALES      | CHICAGO  |
+|  7698 | BLAKE  |     30 | SALES      | CHICAGO  |
+|  7654 | MARTIN |     30 | SALES      | CHICAGO  |
+|  7521 | WARD   |     30 | SALES      | CHICAGO  |
+|  7499 | ALLEN  |     30 | SALES      | CHICAGO  |
+|  NULL | NULL   |   NULL | OPERATIONS | BOSTON   |
++-------+--------+--------+------------+----------+
+14 rows in set (0.00 sec)

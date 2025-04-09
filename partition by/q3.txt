@@ -1,0 +1,20 @@
+mysql> select ename,sal,sum(sal) over(partition by job) , Job
+    -> from emp
+    -> where sal>1000;
++--------+---------+---------------------------------+-----------+
+| ename  | sal     | sum(sal) over(partition by job) | Job       |
++--------+---------+---------------------------------+-----------+
+| SCOTT  | 3000.00 |                         6000.00 | ANALYST   |
+| FORD   | 3000.00 |                         6000.00 | ANALYST   |
+| ADAMS  | 1100.00 |                         2400.00 | CLERK     |
+| MILLER | 1300.00 |                         2400.00 | CLERK     |
+| JONES  | 2975.00 |                         8275.00 | MANAGER   |
+| BLAKE  | 2850.00 |                         8275.00 | MANAGER   |
+| CLARK  | 2450.00 |                         8275.00 | MANAGER   |
+| KING   | 5000.00 |                         5000.00 | PRESIDENT |
+| ALLEN  | 1600.00 |                         5600.00 | SALESMAN  |
+| WARD   | 1250.00 |                         5600.00 | SALESMAN  |
+| MARTIN | 1250.00 |                         5600.00 | SALESMAN  |
+| TURNER | 1500.00 |                         5600.00 | SALESMAN  |
++--------+---------+---------------------------------+-----------+
+12 rows in set (0.00 sec)

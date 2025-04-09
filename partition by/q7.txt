@@ -1,0 +1,12 @@
+mysql> select ename,sal,max(sal) over(partition by deptno),min(sal) over(partition by deptno),max(sal)over(partition by deptno)-sal,max(sal)over(partition by deptno)-min(sal) over(partition by deptno) as diff
+    -> from emp
+    -> where deptno=20;
++-------+---------+------------------------------------+------------------------------------+---------------------------------------+---------+
+| ename | sal     | max(sal) over(partition by deptno) | min(sal) over(partition by deptno) | max(sal)over(partition by deptno)-sal | diff    |
++-------+---------+------------------------------------+------------------------------------+---------------------------------------+---------+
+| JONES | 2975.00 |                            3000.00 |                            1100.00 |                                 25.00 | 1900.00 |
+| SCOTT | 3000.00 |                            3000.00 |                            1100.00 |                                  0.00 | 1900.00 |
+| ADAMS | 1100.00 |                            3000.00 |                            1100.00 |                               1900.00 | 1900.00 |
+| FORD  | 3000.00 |                            3000.00 |                            1100.00 |                                  0.00 | 1900.00 |
++-------+---------+------------------------------------+------------------------------------+---------------------------------------+---------+
+4 rows in set (0.03 sec)

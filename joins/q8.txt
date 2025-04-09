@@ -1,0 +1,11 @@
+mysql> select p.pid,p.pname,p.qty,p.sid,s.sname,s.city
+    -> from product p
+    -> join salesman s
+    -> on p.sid=s.sid
+    -> where p.price>50;
++-----+-------------+------+------+-------+------+
+| pid | pname       | qty  | sid  | sname | city |
++-----+-------------+------+------+-------+------+
+| 213 | Sketch Pens |  150 |   11 | Rahul | Pune |
++-----+-------------+------+------+-------+------+
+1 row in set (0.04 sec)

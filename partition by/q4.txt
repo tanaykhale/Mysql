@@ -1,0 +1,11 @@
+mysql> select ename,job,deptno,count(job) over(partition by deptno)
+    -> from emp
+    -> where job='clerk';
++--------+-------+--------+--------------------------------------+
+| ename  | job   | deptno | count(job) over(partition by deptno) |
++--------+-------+--------+--------------------------------------+
+| MILLER | CLERK |     10 |                                    1 |
+| ADAMS  | CLERK |     20 |                                    1 |
+| JAMES  | CLERK |     30 |                                    1 |
++--------+-------+--------+--------------------------------------+
+3 rows in set (0.00 sec)

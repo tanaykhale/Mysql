@@ -1,0 +1,9 @@
+mysql> select sum(sal),min(sal)
+    -> from emp
+    -> where job='manager';
++----------+----------+
+| sum(sal) | min(sal) |
++----------+----------+
+|  8275.00 |  2450.00 |
++----------+----------+
+1 row in set (0.00 sec)

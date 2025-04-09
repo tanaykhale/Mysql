@@ -1,0 +1,15 @@
+mysql> select ename,sal,count(*) over(partition by deptno)
+    -> from emp
+    -> where sal > 1500;
++-------+---------+------------------------------------+
+| ename | sal     | count(*) over(partition by deptno) |
++-------+---------+------------------------------------+
+| CLARK | 2450.00 |                                  2 |
+| KING  | 5000.00 |                                  2 |
+| JONES | 2975.00 |                                  3 |
+| SCOTT | 3000.00 |                                  3 |
+| FORD  | 3000.00 |                                  3 |
+| ALLEN | 1600.00 |                                  2 |
+| BLAKE | 2850.00 |                                  2 |
++-------+---------+------------------------------------+
+7 rows in set (0.00 sec)

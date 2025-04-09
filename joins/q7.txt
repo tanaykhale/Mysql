@@ -1,0 +1,13 @@
+mysql> select p.pid,p.pname,p.sid,s.pname
+    ->      from product_table p
+    ->      left join product_table s
+    ->      on p.sid=s.pid;
++------+--------------+------+--------+
+| pid  | pname        | sid  | pname  |
++------+--------------+------+--------+
+|    1 | pen          |    2 | pencil |
+|    2 | pencil       |    3 | eraser |
+|    3 | eraser       |    2 | pencil |
+|    4 | skectch pens |    1 | pen    |
++------+--------------+------+--------+
+4 rows in set (0.00 sec)

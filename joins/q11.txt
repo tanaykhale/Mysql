@@ -1,0 +1,24 @@
+mysql> select e.empno,e.ename,d.deptno,d.dname,e.sal,i.grade,i.hike
+    ->      from emp e
+    ->      join dept d
+    ->      on e.deptno=d.deptno
+    ->      join salgrade s
+    ->      on e.sal>s.losal and e.sal<s.hisal
+    ->  join increment i
+    ->  on i.grade=s.grade;
++-------+--------+--------+------------+---------+-------+------+
+| empno | ename  | deptno | dname      | sal     | grade | hike |
++-------+--------+--------+------------+---------+-------+------+
+|  7876 | ADAMS  |     20 | RESEARCH   | 1100.00 |     1 |   10 |
+|  7900 | JAMES  |     30 | SALES      |  950.00 |     1 |   10 |
+|  7521 | WARD   |     30 | SALES      | 1250.00 |     2 |    7 |
+|  7654 | MARTIN |     30 | SALES      | 1250.00 |     2 |    7 |
+|  7934 | MILLER |     10 | ACCOUNTING | 1300.00 |     2 |    7 |
+|  7499 | ALLEN  |     30 | SALES      | 1600.00 |     3 |    5 |
+|  7844 | TURNER |     30 | SALES      | 1500.00 |     3 |    5 |
+|  7566 | JONES  |     20 | RESEARCH   | 2975.00 |     4 |    2 |
+|  7698 | BLAKE  |     30 | SALES      | 2850.00 |     4 |    2 |
+|  7782 | CLARK  |     10 | ACCOUNTING | 2450.00 |     4 |    2 |
+|  7839 | KING   |     10 | ACCOUNTING | 5000.00 |     5 | NULL |
++-------+--------+--------+------------+---------+-------+------+
+11 rows in set (0.00 sec)

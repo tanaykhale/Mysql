@@ -1,0 +1,35 @@
+mysql> select p.pid,p.pname,c.cid,c.cname
+    ->      from product p,category c
+    ->      where p.cid=c.cid and c.cname='chips';
++-----+----------+-----+-------+
+| pid | pname    | cid | cname |
++-----+----------+-----+-------+
+| 123 | lays     |   1 | chips |
+| 125 | pringles |   1 | chips |
+| 134 | nachos   |   1 | chips |
++-----+----------+-----+-------+
+3 rows in set (0.00 sec)
+
+mysql>  select pname from product where cid is null;
++-------------+
+| pname       |
++-------------+
+| eraser      |
+| Sketch Pens |
++-------------+
+2 rows in set (0.00 sec)
+
+mysql> select sname from salesman where regexp_like(sname,'^[pn].*');
++--------+
+| sname  |
++--------+
+| Prasad |
++--------+
+1 row in set (0.00 sec)
+
+mysql> alter table salesman
+    -> add credit_limit int;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
