@@ -1,0 +1,79 @@
+mysql> delimiter //
+mysql> create procedure job(in a varchar(20))
+    -> begin
+    -> declare flag int default 0;
+    -> declare a  varchar(15);
+    -> declare b  varchar(15);
+    -> declare c int;
+    -> declare cur cursor for
+    -> select ename,job,deptno from emp where job=a;
+    -> declare continue handler for NOT FOUND
+    -> set flag=1;
+    -> open cur;
+    -> print:loop
+    -> fetch cur into a,b,c;
+    -> if flag=1
+    -> then
+    -> leave print;
+    -> end if;
+    -> select a,b,c;
+    -> end loop print;
+    -> close cur;
+    -> end //
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> delimiter ;
+mysql> call job('clerk');
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> drop procedure job;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> delimiter //
+mysql> create procedure job(in x varchar(20))
+    -> begin
+    -> declare flag int default 0;
+    -> declare a  varchar(15);
+    -> declare b  varchar(15);
+    -> declare c int;
+    -> declare cur cursor for
+    -> select ename,job,deptno from emp where job=x;
+    -> declare continue handler for NOT FOUND
+    -> set flag=1;
+    -> open cur;
+    -> print:loop
+    -> fetch cur into a,b,c;
+    -> if flag=1
+    -> then
+    -> leave print;
+    -> end if;
+    -> select a,b,c;
+    -> end loop print;
+    -> close cur;
+    -> end //
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delimiter ;
+mysql> call job('clerk');
++-------+-------+------+
+| a     | b     | c    |
++-------+-------+------+
+| ADAMS | CLERK |   20 |
++-------+-------+------+
+1 row in set (0.00 sec)
+
++-------+-------+------+
+| a     | b     | c    |
++-------+-------+------+
+| JAMES | CLERK |   30 |
++-------+-------+------+
+1 row in set (0.01 sec)
+
++--------+-------+------+
+| a      | b     | c    |
++--------+-------+------+
+| MILLER | CLERK |   10 |
++--------+-------+------+
+1 row in set (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)

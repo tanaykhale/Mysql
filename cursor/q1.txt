@@ -1,0 +1,60 @@
+mysql> delimiter //
+mysql> create procedure test()
+    -> begin
+    -> declare flag int default 0;
+    -> declare a varchar(15);
+    -> declare b varchar(15);
+    -> declare c int;
+    -> declare cur cursor for
+    -> select ename,job,deptno from emp where deptno=20;
+    -> declare continue handler for NOT FOUND set flag=1;
+    -> open cur;
+    -> x:loop
+    ->  fetch cur into a,b,c;
+    ->  if flag=1
+    ->  then
+    ->          leave x;
+    ->  end if;
+    ->  select a,b,c;
+    -> end loop x;
+    -> close cur;
+    -> end //
+Query OK, 0 rows affected (0.03 sec)
+mysql> delimiter ;
+mysql> call test;
++-------+---------+------+
+| a     | b       | c    |
++-------+---------+------+
+| JONES | MANAGER |   20 |
++-------+---------+------+
+1 row in set (0.05 sec)
+
++-------+---------+------+
+| a     | b       | c    |
++-------+---------+------+
+| SCOTT | ANALYST |   20 |
++-------+---------+------+
+1 row in set (0.06 sec)
+
++-------+-------+------+
+| a     | b     | c    |
++-------+-------+------+
+| ADAMS | CLERK |   20 |
++-------+-------+------+
+1 row in set (0.06 sec)
+
++------+---------+------+
+| a    | b       | c    |
++------+---------+------+
+| FORD | ANALYST |   20 |
++------+---------+------+
+1 row in set (0.06 sec)
+
++-------+------+------+
+| a     | b    | c    |
++-------+------+------+
+| geeta | NULL |   20 |
++-------+------+------+
+1 row in set (0.06 sec)
+
+Query OK, 0 rows affected (0.06 sec)

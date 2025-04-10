@@ -1,0 +1,16 @@
+mysql> create view emp_v20
+    -> as
+    -> select empno,ename,deptno,job from emp where deptno=20;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> select * from emp_v20;
++-------+-------+--------+---------+
+| empno | ename | deptno | job     |
++-------+-------+--------+---------+
+|  7566 | JONES |     20 | MANAGER |
+|  7788 | SCOTT |     20 | ANALYST |
+|  7876 | ADAMS |     20 | CLERK   |
+|  7902 | FORD  |     20 | ANALYST |
+|  1111 | geeta |     20 | NULL    |
++-------+-------+--------+---------+
+5 rows in set (0.00 sec)

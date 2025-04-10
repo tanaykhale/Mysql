@@ -1,0 +1,32 @@
+mysql> delimiter //
+mysql> create function email(a varchar(20),b varchar(20))
+    -> returns varchar(20)
+    -> begin
+    -> declare text varchar(20);
+    -> set text=concat(lower(substr(a,1,2)),lower(substr(b,-2,2)),'@knowit.com');
+    -> return text;
+    -> end //
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> delimiter ;
+mysql> select email(ename,job) from emp;
++------------------+
+| email(ename,job) |
++------------------+
+| alan@knowit.com  |
+| waan@knowit.com  |
+| joer@knowit.com  |
+| maan@knowit.com  |
+| bler@knowit.com  |
+| cler@knowit.com  |
+| scst@knowit.com  |
+| kint@knowit.com  |
+| tuan@knowit.com  |
+| adrk@knowit.com  |
+| jark@knowit.com  |
+| fost@knowit.com  |
+| mirk@knowit.com  |
+| NULL             |
+| rast@knowit.com  |
++------------------+
+15 rows in set (0.01 sec)

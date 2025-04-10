@@ -1,0 +1,14 @@
+delimiter //
+create procedure testn(in a int)
+begin
+declare i int default 1;
+print:loop 
+select sal from emp where empno=a;
+set i=i+1;
+if i>10
+then
+leave print
+end if
+end loop print
+end //
+delimiter ;

@@ -1,0 +1,3 @@
+mysql> insert into new_emp_v20 values
+    -> (2222,'Raj',40,'Analyst');
+ERROR 1369 (HY000): CHECK OPTION failed 'knowitdb.new_emp_v20'

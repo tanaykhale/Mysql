@@ -1,0 +1,23 @@
+delimiter // 
+create trigger abc
+     before insert
+     on emp_wage
+     for each row
+     begin
+     if isnull(new.over_time)
+     then
+     set new.over_time=400;
+	end if;
+end//
+delimiter ;
+mysql> insert into emp_wage(ename,sal) values("ram",1234);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from emp_wage;
++-----+-------+------+-----------+
+| eno | ename | sal  | over_time |
++-----+-------+------+-----------+
+|     |       |      |           |
+|   1 | ram   | 1234 |       400 |
++-----+-------+------+-----------+
+2 rows in set (0.00 sec)

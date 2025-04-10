@@ -1,0 +1,3 @@
+mysql> insert into emp_v20 values
+    -> (2222,'Raj',40,'Analyst');
+Query OK, 1 row affected (0.06 sec)

@@ -1,0 +1,18 @@
+mysql> delimiter //
+mysql> create procedure avg_salary()
+    -> begin
+    ->  select avg(sal)
+    ->  from emp;
+    -> end//
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> delimiter ;
+mysql> call avg_salary;
++-------------+
+| avg(sal)    |
++-------------+
+| 2730.357143 |
++-------------+
+1 row in set (0.07 sec)
+
+Query OK, 0 rows affected (0.07 sec)
