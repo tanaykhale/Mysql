@@ -1,0 +1,25 @@
+movie> db.movie.find({price:{$in:[200,540,400,235]}})
+[
+  {
+    _id: ObjectId('5ca47e5b2952ebdd7ae2a931'),
+    name: 'padmavat',
+    rating: 4,
+    price: 235,
+    ticket_no: 300,
+    actor: [
+      'Deepika',
+      'shahid kapoor',
+      'ranveer singh',
+      'aditi Rao',
+      'aaaaa'
+    ],
+    cancellation: { date: Timestamp({ t: 1567175239, i: 1 }) }
+  },
+  {
+    _id: ObjectId('5d8f51ce065d3e2aa902aa22'),
+    name: 'dream girl',
+    actor: [ 'ayushman', 'nushrat bharucha' ],
+    price: 235,
+    rating: null
+  }
+]

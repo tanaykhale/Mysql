@@ -1,0 +1,40 @@
+movie> db.createCollection("dept",{capped:true,max:5,size:1024,autoIndexId:true})
+{ ok: 1 }
+movie> use dept
+switched to db dept
+dept> db.dept.insertMany({dno:12,dname:"manager",location:"Pune"})
+MongoInvalidArgumentError: Argument "docs" must be an array of documents
+dept> db.dept.insertMany([{dno:12,dname:"manager",location:"Pune"}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('67f8fb7a4ac9e257c3b5f89b') }
+}
+dept> db.dept.insertMany([{dno:13,dname:"clerk",location:"Mumbai"},{dno:14,dname:"Accounts",location:"Delhi"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('67f8fbb64ac9e257c3b5f89c'),
+    '1': ObjectId('67f8fbb64ac9e257c3b5f89d')
+  }
+}
+dept> db.dept.find()
+[
+  {
+    _id: ObjectId('67f8fb7a4ac9e257c3b5f89b'),
+    dno: 12,
+    dname: 'manager',
+    location: 'Pune'
+  },
+  {
+    _id: ObjectId('67f8fbb64ac9e257c3b5f89c'),
+    dno: 13,
+    dname: 'clerk',
+    location: 'Mumbai'
+  },
+  {
+    _id: ObjectId('67f8fbb64ac9e257c3b5f89d'),
+    dno: 14,
+    dname: 'Accounts',
+    location: 'Delhi'
+  }
+]

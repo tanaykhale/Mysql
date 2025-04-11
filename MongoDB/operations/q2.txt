@@ -1,0 +1,13 @@
+movie> db.movie.find({rating:{$lt:3},price:257})
+[
+  {
+    _id: ObjectId('5ca456072952ebdd7ae2a930'),
+    name: 'paa',
+    actor: [ 'Amitabh', 'vidya balan', 'Abhishek' ],
+    rating: 2,
+    price: 257,
+    ticket_no: 210,
+    rdate: ISODate('2019-01-23T00:00:00.000Z'),
+    others: { director: 'R Balki', songs: 'Amit trivedi' }
+  }
+]
